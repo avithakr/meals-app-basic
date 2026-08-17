@@ -1,0 +1,52 @@
+import React from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+
+const CategoryGridTile = ({ id, name, color, icon }) => {
+
+  const handlePress = () => {
+    
+  };
+  return (
+    <View style={[styles.conatiner, { backgroundColor: color }]}>
+      <Pressable
+        onPress={handlePress}
+        android_ripple={{ color: "#b2a4ef" }}
+        style={({ pressed }) => [
+          styles.categoryContainer,
+          pressed && styles.pressedItem,
+        ]}
+      >
+        <Text style={styles.categoryText}>{name}</Text>
+        <Text style={styles.categoryIcon}>{icon}</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+export default CategoryGridTile;
+
+const styles = StyleSheet.create({
+  conatiner: {
+    width: 150,
+    height: 150,
+    borderRadius: 8,
+    margin: 8,
+    padding: 8,
+    elevation: 4,
+  },
+  categoryContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  categoryText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  categoryIcon: {
+    fontSize: 48,
+  },
+  pressedItem: {
+    opacity: 0.5,
+  },
+});
