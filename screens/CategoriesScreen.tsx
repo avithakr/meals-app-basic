@@ -1,9 +1,9 @@
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import mealsData from "../data/meals.json";
-import CategoryGridTile from "../components/CategoryGridTile";
+import CategoryGridTile, { type Category } from "../components/CategoryGridTile";
 
-const renderCategoryTiles = (item) => {
+const renderCategoryTiles = (item: Category) => {
   return (
     <View style={styles.categoryContainer}>
       <CategoryGridTile

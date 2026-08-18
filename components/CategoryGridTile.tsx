@@ -1,7 +1,14 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const CategoryGridTile = ({ id, name, color, icon }) => {
+export interface Category {
+  id: string,
+  name: string,
+  color: string,
+  icon: string
+}
+
+const CategoryGridTile = ({ id, name, color, icon }: Category) => {
 
   const handlePress = () => {
     
