@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
+import { Ionicons } from '@expo/vector-icons';
 
 export interface Meal {
   id: string;
@@ -49,7 +50,7 @@ export default function App() {
           <Stack.Screen
             name="MealDetailScreen"
             component={MealDetailScreen}
-            options={{ title: 'Meal Details' }}
+            options={{ title: 'Meal Details', headerRight: () => <Ionicons name="heart" size={20} color="#ff0019" /> }}
           />
           <Stack.Screen
             name="MealsOverviewScreen"
