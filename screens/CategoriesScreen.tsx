@@ -1,4 +1,3 @@
-import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import mealsData from "../data/meals.json";
 import CategoryGridTile, { type Category } from "../components/CategoryGridTile";
