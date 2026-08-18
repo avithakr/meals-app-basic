@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import mealsData from "../data/meals.json";
 import CategoryGridTile, { type Category } from "../components/CategoryGridTile";
 
-interface Navigation{
+export interface Navigation{
   navigation: { navigate: (screen: string, params?: any) => void }
 }
 

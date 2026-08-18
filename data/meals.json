@@ -84,7 +84,8 @@
       "fat": "8g",
       "isVegetarian": true,
       "isGlutenFree": false,
-      "isDairyFree": false
+      "isDairyFree": false,
+      "servings": 1
     },
     {
       "id": "m2",
@@ -122,7 +123,8 @@
       "fat": "22g",
       "isVegetarian": false,
       "isGlutenFree": false,
-      "isDairyFree": false
+      "isDairyFree": false,
+      "servings": 2
     },
     {
       "id": "m3",
@@ -162,7 +164,8 @@
       "fat": "20g",
       "isVegetarian": true,
       "isGlutenFree": true,
-      "isDairyFree": true
+      "isDairyFree": true,
+      "servings": 2
     },
     {
       "id": "m4",
@@ -204,7 +207,8 @@
       "fat": "18g",
       "isVegetarian": false,
       "isGlutenFree": true,
-      "isDairyFree": true
+      "isDairyFree": true,
+      "servings": 1
     },
     {
       "id": "m5",
@@ -244,7 +248,8 @@
       "fat": "28g",
       "isVegetarian": true,
       "isGlutenFree": false,
-      "isDairyFree": false
+      "isDairyFree": false,
+      "servings": 3
     },
     {
       "id": "m6",
@@ -287,7 +292,8 @@
       "fat": "18g",
       "isVegetarian": true,
       "isGlutenFree": true,
-      "isDairyFree": true
+      "isDairyFree": true,
+      "servings": 2
     },
     {
       "id": "m7",
@@ -327,7 +333,8 @@
       "fat": "25g",
       "isVegetarian": true,
       "isGlutenFree": false,
-      "isDairyFree": false
+      "isDairyFree": false,
+      "servings": 2
     },
     {
       "id": "m8",
@@ -368,7 +375,8 @@
       "fat": "12g",
       "isVegetarian": false,
       "isGlutenFree": false,
-      "isDairyFree": true
+      "isDairyFree": true,
+      "servings": 2
     },
     {
       "id": "m9",
@@ -410,7 +418,8 @@
       "fat": "11g",
       "isVegetarian": true,
       "isGlutenFree": false,
-      "isDairyFree": false
+      "isDairyFree": false,
+      "servings": 2
     },
     {
       "id": "m10",
@@ -451,7 +460,8 @@
       "fat": "26g",
       "isVegetarian": true,
       "isGlutenFree": false,
-      "isDairyFree": false
+      "isDairyFree": false,
+      "servings": 2
     },
     {
       "id": "m11",
@@ -494,7 +504,8 @@
       "fat": "18g",
       "isVegetarian": false,
       "isGlutenFree": false,
-      "isDairyFree": false
+      "isDairyFree": false,
+      "servings": 2
     },
     {
       "id": "m12",
@@ -537,7 +548,8 @@
       "fat": "14g",
       "isVegetarian": true,
       "isGlutenFree": false,
-      "isDairyFree": true
+      "isDairyFree": true,
+      "servings": 2
     }
   ]
 }
