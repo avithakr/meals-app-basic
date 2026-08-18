@@ -12,7 +12,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 const CategoryGridTile = ({ name, color, icon, onCategoryPress }: CategoryGridTileProps) => {
 
   return (
-    <View style={[styles.conatiner, { backgroundColor: color }]}>
+    <View style={[styles.container, { backgroundColor: color }]}>
       <Pressable
         onPress={onCategoryPress}
         android_ripple={{ color: "#b2a4ef" }}
@@ -31,7 +31,7 @@ const CategoryGridTile = ({ name, color, icon, onCategoryPress }: CategoryGridTi
 export default CategoryGridTile;
 
 const styles = StyleSheet.create({
-  conatiner: {
+  container: {
     width: 150,
     height: 150,
     borderRadius: 8,

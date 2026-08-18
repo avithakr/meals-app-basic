@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 const MealsOverviewScreen = () => {
   return (
-    <View style={styles.conatiner}>
+    <View style={styles.container}>
         <Text>MealsOverviewScreen</Text>
     </View>
   )
@@ -12,7 +12,7 @@ const MealsOverviewScreen = () => {
 export default MealsOverviewScreen
 
 const styles = StyleSheet.create({
-    conatiner: {
+    container: {
         flex: 1,
         padding: 16
     }
