@@ -3,14 +3,14 @@ import mealsData from "../data/meals.json";
 import CategoryGridTile, { type Category } from "../components/CategoryGridTile";
 
 interface Navigation{
-  navigation: { navigate: (screen: string) => void }
+  navigation: { navigate: (screen: string, params?: any) => void }
 }
 
 const CategoriesScreen = ({ navigation }: Navigation) => {
   const { categories } = mealsData;
 
-  const handleCategoryPress = () => {
-    navigation.navigate('MealsOverviewScreen')
+  const handleCategoryPress = (categoryId: string) => {
+    navigation.navigate('MealsOverviewScreen', {categoryId})
   }
 
   const renderCategoryTiles = (item: Category) => {
@@ -18,7 +18,7 @@ const CategoriesScreen = ({ navigation }: Navigation) => {
     <View style={styles.categoryContainer}>
       <CategoryGridTile
         {...item}
-        onCategoryPress={handleCategoryPress}
+        onCategoryPress={() => handleCategoryPress(item.id)}
       />
     </View>
   );
