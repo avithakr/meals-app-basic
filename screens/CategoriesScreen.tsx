@@ -1,12 +1,12 @@
 import { FlatList, StyleSheet, View, Text, StatusBar } from 'react-native';
 import mealsData from '../data/meals.json';
 import CategoryGridTile, { type Category } from '../components/CategoryGridTile';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../App';
 
-export interface Navigation {
-  navigation: { navigate: (screen: string, params?: any) => void };
-}
+type CategoriesScreenProps = NativeStackScreenProps<RootStackParamList, 'MealsCategories'>;
 
-const CategoriesScreen = ({ navigation }: Navigation) => {
+const CategoriesScreen = ({ navigation }: CategoriesScreenProps) => {
   const { categories } = mealsData;
 
   const handleCategoryPress = (categoryId: string, categoryName: string) => {

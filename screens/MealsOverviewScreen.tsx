@@ -1,43 +1,17 @@
 import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { useRoute, type RouteProp } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import data from '../data/meals.json';
-import type { Navigation } from './CategoriesScreen';
-
-export interface Meal {
-  id: string;
-  categoryIds: string[];
-  name: string;
-  description: string;
-  imageUrl: string;
-  duration: number;
-  complexity: string;
-  affordability: string;
-  ingredients: string[];
-  steps: string[];
-  calories: number;
-  protein: string;
-  carbs: string;
-  fat: string;
-  isVegetarian: boolean;
-  isGlutenFree: boolean;
-  isDairyFree: boolean;
-  servings: number;
-}
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { Meal, RootStackParamList } from '../App';
 
 interface MealTileProps {
   meal: Meal;
   onPress: () => void;
 }
 
-type RootStackParamList = {
-  MealsOverviewScreen: { categoryId: string };
-};
+type MealsOverviewScreenProps = NativeStackScreenProps<RootStackParamList, 'MealsOverviewScreen'>;
 
-type MealsOverviewScreenRouteProp = RouteProp<RootStackParamList, 'MealsOverviewScreen'>;
-
-const MealsOverviewScreen = ({ navigation }: Navigation) => {
-  const route = useRoute<MealsOverviewScreenRouteProp>();
+const MealsOverviewScreen = ({ navigation, route }: MealsOverviewScreenProps) => {
   const { categoryId } = route.params;
 
   const getMealsByCategoryId = (meals: Meal[], categoryId: string): Meal[] => {

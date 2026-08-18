@@ -1,14 +1,23 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useRoute, type RouteProp } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import type { Meal } from './MealsOverviewScreen';
+import { useLayoutEffect } from 'react';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../App';
 
-type MealDetailRouteProp = RouteProp<{ MealDetail: { item: Meal } }, 'MealDetail'>;
+type MealDetailScreenProps = NativeStackScreenProps<RootStackParamList, 'MealDetailScreen'>;
 
-const MealDetailScreen = () => {
-  const route = useRoute<MealDetailRouteProp>();
+const MealDetailScreen = ({ navigation, route }: MealDetailScreenProps) => {
   const { item } = route.params;
   const { ingredients, steps, imageUrl, name, description, duration, complexity, servings } = item;
+
+  {/* Always use useLayoutEffect for updating anything on navigation */}
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: item?.name || 'Meal Details',
+    });
+  }, [navigation, item]);
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* Hero Image */}

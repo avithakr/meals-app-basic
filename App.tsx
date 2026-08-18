@@ -6,7 +6,34 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 
-const Stack = createNativeStackNavigator();
+export interface Meal {
+  id: string;
+  categoryIds: string[];
+  name: string;
+  description: string;
+  imageUrl: string;
+  duration: number;
+  complexity: string;
+  affordability: string;
+  ingredients: string[];
+  steps: string[];
+  calories: number;
+  protein: string;
+  carbs: string;
+  fat: string;
+  isVegetarian: boolean;
+  isGlutenFree: boolean;
+  isDairyFree: boolean;
+  servings: number;
+}
+
+export type RootStackParamList = {
+  MealsCategories: undefined;
+  MealsOverviewScreen: { categoryId: string; categoryName: string };
+  MealDetailScreen: { item: Meal };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
@@ -17,9 +44,18 @@ export default function App() {
           <Stack.Screen
             name="MealsCategories"
             component={CategoriesScreen}
+            options={{ title: 'All Categories' }}
           />
-          <Stack.Screen name="MealDetailScreen" component={MealDetailScreen} />
-          <Stack.Screen name="MealsOverviewScreen" component={MealsOverviewScreen} />
+          <Stack.Screen
+            name="MealDetailScreen"
+            component={MealDetailScreen}
+            options={{ title: 'Meal Details' }}
+          />
+          <Stack.Screen
+            name="MealsOverviewScreen"
+            component={MealsOverviewScreen}
+            options={{ title: 'Meal Overview' }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
