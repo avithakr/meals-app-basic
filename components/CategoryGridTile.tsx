@@ -1,25 +1,21 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-  export interface Category {
-    id: string;
-    name: string;
-    color: string;
-    icon: string;
-  }
-  interface CategoryGridTileProps extends Category {
-    onCategoryPress: () => void;
-  }
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+export interface Category {
+  id: string;
+  name: string;
+  color: string;
+  icon: string;
+}
+interface CategoryGridTileProps extends Category {
+  onCategoryPress: () => void;
+}
 
 const CategoryGridTile = ({ name, color, icon, onCategoryPress }: CategoryGridTileProps) => {
-
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
       <Pressable
         onPress={onCategoryPress}
-        android_ripple={{ color: "#b2a4ef" }}
-        style={({ pressed }) => [
-          styles.categoryContainer,
-          pressed && styles.pressedItem,
-        ]}
+        android_ripple={{ color: '#b2a4ef' }}
+        style={({ pressed }) => [styles.categoryContainer, pressed && styles.pressedItem]}
       >
         <Text style={styles.categoryText}>{name}</Text>
         <Text style={styles.categoryIcon}>{icon}</Text>
@@ -40,12 +36,12 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   categoryContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   categoryText: {
-    color: "white",
-    fontWeight: "bold",
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 18,
   },
   categoryIcon: {
