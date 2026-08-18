@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator, DrawerToggleButton } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
@@ -34,30 +35,53 @@ export type RootStackParamList = {
   MealDetailScreen: { item: Meal };
 };
 
+type RootDrawerParamList = {
+  Meals: undefined;
+};
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
+
+function MealsStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="MealsCategories"
+      screenOptions={{ headerLeft: () => <DrawerToggleButton /> }}
+    >
+      <Stack.Screen
+        name="MealsCategories"
+        component={CategoriesScreen}
+        options={{ title: 'All Categories' }}
+      />
+      <Stack.Screen
+        name="MealDetailScreen"
+        component={MealDetailScreen}
+        options={{
+          title: 'Meal Details',
+          headerRight: () => <Ionicons name="heart" size={20} color="#ff0019" />,
+        }}
+      />
+      <Stack.Screen
+        name="MealsOverviewScreen"
+        component={MealsOverviewScreen}
+        options={{ title: 'Meal Overview' }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MealsCategories">
-          <Stack.Screen
-            name="MealsCategories"
-            component={CategoriesScreen}
-            options={{ title: 'All Categories' }}
+        <Drawer.Navigator>
+          <Drawer.Screen
+            name="Meals"
+            component={MealsStack}
+            options={{ title: 'Meals', headerShown: false }}
           />
-          <Stack.Screen
-            name="MealDetailScreen"
-            component={MealDetailScreen}
-            options={{ title: 'Meal Details', headerRight: () => <Ionicons name="heart" size={20} color="#ff0019" /> }}
-          />
-          <Stack.Screen
-            name="MealsOverviewScreen"
-            component={MealsOverviewScreen}
-            options={{ title: 'Meal Overview' }}
-          />
-        </Stack.Navigator>
+        </Drawer.Navigator>
       </NavigationContainer>
     </View>
   );
