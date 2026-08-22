@@ -9,6 +9,7 @@ import MealsListScreen from './screens/MealsListScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import FavoritesContextProvider from './store/context/favorites-context';
 import FavoriteMealScreen from './screens/FavoriteMealScreen';
+import { Ionicons } from '@expo/vector-icons';
 
 export interface Meal {
   id: string;
@@ -97,12 +98,22 @@ export default function App() {
             <Drawer.Screen
               name="Meals"
               component={MealsStack}
-              options={{ title: 'Meals', headerShown: false }}
+              options={{
+                title: 'All Meals', headerShown: false, drawerIcon: ({ color, size }) => (
+                  <Ionicons name="restaurant" color={color} size={size} />
+                )
+              }}
+
             />
             <Drawer.Screen
               name='FavoriteMealStack'
               component={FavoriteMealStack}
-              options={{ title: 'Favorite Meal', headerShown: false }}
+              options={{
+                title: 'Favorite Meal', headerShown: false,
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="heart" color={color} size={size} />
+                )
+              }}
             />
           </Drawer.Navigator>
         </NavigationContainer>
