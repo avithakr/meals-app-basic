@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerToggleButton } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,6 +8,7 @@ import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import { Ionicons } from '@expo/vector-icons';
 import FavoritesContextProvider from './store/context/favorites-context';
+import FavoriteMealScreen from './screens/FavoriteMealScreen';
 
 export interface Meal {
   id: string;
@@ -32,14 +33,14 @@ export interface Meal {
 
 export type RootStackParamList = {
   MealsCategories: undefined;
-  AuthScreen: undefined;
+  FavoriteMealScreen: undefined;
   MealsOverviewScreen: { categoryId: string; categoryName: string };
   MealDetailScreen: { item: Meal };
 };
 
 type RootDrawerParamList = {
   Meals: undefined;
-  Auth: undefined;
+  FavoriteMealStack: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -73,21 +74,17 @@ function MealsStack() {
   );
 }
 
-const AuthScreen = () => <Text>Auth</Text>;
-
-function AuthStack() {
+function FavoriteMealStack() {
   return (
-    <Stack.Navigator initialRouteName="AuthScreen">
+    <Stack.Navigator initialRouteName='FavoriteMealScreen'>
       <Stack.Screen
-        name="AuthScreen"
-        component={AuthScreen}
+        name='FavoriteMealScreen'
+        component={FavoriteMealScreen}
         options={{
-          title: 'Authentication',
-          headerLeft: () => <DrawerToggleButton />,
-        }}
-      />
-    </Stack.Navigator>
-  );
+          title: "Favorites Meal",
+          headerLeft: () => <DrawerToggleButton />
+        }} />
+    </Stack.Navigator>)
 }
 
 export default function App() {
@@ -103,9 +100,9 @@ export default function App() {
               options={{ title: 'Meals', headerShown: false }}
             />
             <Drawer.Screen
-              name="Auth"
-              component={AuthStack}
-              options={{ title: 'Login', headerShown: false }}
+              name='FavoriteMealStack'
+              component={FavoriteMealStack}
+              options={{ title: 'Favorite Meal', headerShown: false }}
             />
           </Drawer.Navigator>
         </NavigationContainer>
