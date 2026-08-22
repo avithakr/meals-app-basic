@@ -7,6 +7,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import { Ionicons } from '@expo/vector-icons';
+import FavoritesContextProvider from "./store/context/favorites-context"
 
 export interface Meal {
   id: string;
@@ -92,20 +93,22 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <NavigationContainer>
-        <Drawer.Navigator>
-          <Drawer.Screen
-            name="Meals"
-            component={MealsStack}
-            options={{ title: 'Meals', headerShown: false }}
-          />
-          <Drawer.Screen
-            name="Auth"
-            component={AuthStack}
-            options={{ title: 'Login', headerShown: false }}
-          />
-        </Drawer.Navigator>
-      </NavigationContainer>
+      <FavoritesContextProvider>
+        <NavigationContainer>
+          <Drawer.Navigator>
+            <Drawer.Screen
+              name="Meals"
+              component={MealsStack}
+              options={{ title: 'Meals', headerShown: false }}
+            />
+            <Drawer.Screen
+              name="Auth"
+              component={AuthStack}
+              options={{ title: 'Login', headerShown: false }}
+            />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </FavoritesContextProvider>
     </View>
   );
 }
