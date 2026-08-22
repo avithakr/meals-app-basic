@@ -1,9 +1,11 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useContext, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../App';
-import { FavoritesContext } from '../store/context/favorites-context';
+import { useAppDispatch, useAppSelector } from '../store/context/redux/hook';
+import { addFavorite, removeFavorite } from '../store/context/redux/favoriteSlice';
+// import { FavoritesContext } from '../store/context/favorites-context';
 
 type MealDetailScreenProps = NativeStackScreenProps<RootStackParamList, 'MealDetailScreen'>;
 
@@ -11,19 +13,32 @@ const MealDetailScreen = ({ navigation, route }: MealDetailScreenProps) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const { item } = route.params;
   const { ingredients, steps, imageUrl, name, description, duration, complexity, servings } = item;
-  const { ids, addFavorite, removeFavorite } = useContext(FavoritesContext)
+  // const { ids, addFavorite, removeFavorite } = useContext(FavoritesContext)
 
-  const isFavoriteMealSelected = ids.includes(item.id);
+  // const isFavoriteMealSelected = ids.includes(item.id);
+
+  // const handleFavorite = () => {
+  //   setIsFavorite((prev) => !prev)
+  //   if (isFavoriteMealSelected) {
+  //     removeFavorite(item.id);
+  //   } else {
+  //     addFavorite(item.id);
+  //   }
+  // }
+
+  const dispatch = useAppDispatch();
+  const favoriteIds = useAppSelector(state => state.favoriteMeals.ids);
+
+  const isFavoriteMealSelected = favoriteIds.includes(item.id);
 
   const handleFavorite = () => {
     setIsFavorite((prev) => !prev)
     if (isFavoriteMealSelected) {
-      removeFavorite(item.id);
+      dispatch(removeFavorite(item.id));
     } else {
-      addFavorite(item.id);
+      dispatch(addFavorite(item.id));
     }
   }
-
 
   {
     /* Always use useLayoutEffect for updating anything on navigation */

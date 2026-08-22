@@ -7,9 +7,11 @@ import type { NavigatorScreenParams } from '@react-navigation/native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsListScreen from './screens/MealsListScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
-import FavoritesContextProvider from './store/context/favorites-context';
+// import FavoritesContextProvider from './store/context/favorites-context';
 import FavoriteMealScreen from './screens/FavoriteMealScreen';
 import { Ionicons } from '@expo/vector-icons';
+import { Provider } from 'react-redux';
+import { store } from './store/context/redux/store';
 
 export interface Meal {
   id: string;
@@ -92,7 +94,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <FavoritesContextProvider>
+      <Provider store={store}>
+        {/* <FavoritesContextProvider> */}
         <NavigationContainer>
           <Drawer.Navigator>
             <Drawer.Screen
@@ -117,7 +120,8 @@ export default function App() {
             />
           </Drawer.Navigator>
         </NavigationContainer>
-      </FavoritesContextProvider>
+        {/* </FavoritesContextProvider> */}
+      </Provider>
     </View>
   );
 }

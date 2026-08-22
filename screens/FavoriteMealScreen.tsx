@@ -1,12 +1,13 @@
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { DrawerScreenProps } from '@react-navigation/drawer';
-import { FavoritesContext } from '../store/context/favorites-context';
+// import { FavoritesContext } from '../store/context/favorites-context';
 import mealsData from "../data/meals.json"
 import MealTile from '../components/MealTile';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { FavoriteStackParamList, Meal, RootDrawerParamList } from '../App';
+import { useAppSelector } from '../store/context/redux/hook';
 
 type FavoriteMealScreenProps = CompositeScreenProps<
   NativeStackScreenProps<FavoriteStackParamList, 'FavoriteMealScreen'>,
@@ -15,8 +16,13 @@ type FavoriteMealScreenProps = CompositeScreenProps<
 
 
 const FavoriteMealScreen = ({ navigation }: FavoriteMealScreenProps) => {
-  const { ids } = useContext(FavoritesContext);
-  const favoriteMeals = mealsData.meals.filter((meal) => ids.includes(meal.id));
+  // const { ids } = useContext(FavoritesContext);
+  const favoriteIds = useAppSelector(state => state.favoriteMeals.ids);
+
+  console.log('favoriteIds::', favoriteIds);
+
+
+  const favoriteMeals = mealsData.meals.filter((meal) => favoriteIds.includes(meal.id));
 
   const handleMealPress = (item: Meal) => {
     navigation.navigate('Meals', {
