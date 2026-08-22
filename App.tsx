@@ -46,12 +46,14 @@ function MealsStack() {
   return (
     <Stack.Navigator
       initialRouteName="MealsCategories"
-      screenOptions={{ headerLeft: () => <DrawerToggleButton /> }}
     >
       <Stack.Screen
         name="MealsCategories"
         component={CategoriesScreen}
-        options={{ title: 'All Categories' }}
+        options={{
+          title: 'All Categories',
+          headerLeft: () => <DrawerToggleButton />,
+        }}
       />
       <Stack.Screen
         name="MealDetailScreen"
