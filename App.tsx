@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerToggleButton } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import type { NavigatorScreenParams } from '@react-navigation/native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsListScreen from './screens/MealsListScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
@@ -32,17 +33,21 @@ export interface Meal {
 
 export type RootStackParamList = {
   MealsCategories: undefined;
-  FavoriteMealScreen: undefined;
   MealsListScreen: { categoryId: string; categoryName: string };
   MealDetailScreen: { item: Meal };
 };
 
-type RootDrawerParamList = {
-  Meals: undefined;
+export type FavoriteStackParamList = {
+  FavoriteMealScreen: undefined;
+};
+
+export type RootDrawerParamList = {
+  Meals: NavigatorScreenParams<RootStackParamList>;
   FavoriteMealStack: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const FavoriteStack = createNativeStackNavigator<FavoriteStackParamList>();
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 function MealsStack() {
@@ -71,15 +76,15 @@ function MealsStack() {
 
 function FavoriteMealStack() {
   return (
-    <Stack.Navigator initialRouteName='FavoriteMealScreen'>
-      <Stack.Screen
+    <FavoriteStack.Navigator initialRouteName='FavoriteMealScreen'>
+      <FavoriteStack.Screen
         name='FavoriteMealScreen'
         component={FavoriteMealScreen}
         options={{
           title: "Favorites Meal",
           headerLeft: () => <DrawerToggleButton />
         }} />
-    </Stack.Navigator>)
+    </FavoriteStack.Navigator>)
 }
 
 export default function App() {

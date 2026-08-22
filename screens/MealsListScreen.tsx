@@ -1,13 +1,8 @@
-import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { FlatList, StyleSheet, View } from 'react-native';
 import data from '../data/meals.json';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { Meal, RootStackParamList } from '../App';
-
-interface MealTileProps {
-  meal: Meal;
-  onPress: () => void;
-}
+import MealTile from '../components/MealTile';
 
 type MealsListScreenProps = NativeStackScreenProps<RootStackParamList, 'MealsListScreen'>;
 
@@ -22,55 +17,6 @@ const MealsListScreen = ({ navigation, route }: MealsListScreenProps) => {
 
   const handleOnPress = (item: Meal) => {
     navigation.navigate('MealDetailScreen', { item });
-  };
-
-  const MealTile = ({ meal, onPress }: MealTileProps) => {
-    return (
-      <Pressable
-        onPress={onPress}
-        style={({ pressed }) => [styles.mealContainer, pressed && styles.mealContainerPressed]}
-      >
-        {/* Image */}
-        <View style={styles.imageContainer}>
-          <Image source={{ uri: meal.imageUrl }} style={styles.image} />
-          <View style={styles.imageOverlay} />
-        </View>
-
-        {/* Content */}
-        <View style={styles.contentContainer}>
-          <Text style={styles.title} numberOfLines={2}>
-            {meal.name}
-          </Text>
-
-          {/* Metadata Row */}
-          <View style={styles.metaRow}>
-            {meal.duration && (
-              <View style={styles.metaItem}>
-                <Ionicons name="time-outline" size={16} color="#666" />
-                <Text style={styles.metaText}>{meal.duration} min</Text>
-              </View>
-            )}
-            {meal.complexity && (
-              <View style={styles.metaItem}>
-                <Ionicons name="flame-outline" size={16} color="#FF9500" />
-                <Text style={styles.metaText}>{meal.complexity}</Text>
-              </View>
-            )}
-            {meal.affordability && (
-              <View style={styles.metaItem}>
-                <Ionicons name="cash-outline" size={16} color="#4CAF50" />
-                <Text style={styles.metaText}>{meal.affordability}</Text>
-              </View>
-            )}
-          </View>
-        </View>
-
-        {/* Arrow Icon */}
-        <View style={styles.arrowContainer}>
-          <Ionicons name="chevron-forward" size={20} color="#ccc" />
-        </View>
-      </Pressable>
-    );
   };
 
   return (

@@ -1,14 +1,29 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useLayoutEffect } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../App';
+import { FavoritesContext } from '../store/context/favorites-context';
 
 type MealDetailScreenProps = NativeStackScreenProps<RootStackParamList, 'MealDetailScreen'>;
 
 const MealDetailScreen = ({ navigation, route }: MealDetailScreenProps) => {
+  const [isFavorite, setIsFavorite] = useState(false)
   const { item } = route.params;
   const { ingredients, steps, imageUrl, name, description, duration, complexity, servings } = item;
+  const { ids, addFavorite, removeFavorite } = useContext(FavoritesContext)
+
+  const isFavoriteMealSelected = ids.includes(item.id);
+
+  const handleFavorite = () => {
+    setIsFavorite((prev) => !prev)
+    if (isFavoriteMealSelected) {
+      removeFavorite(item.id);
+    } else {
+      addFavorite(item.id);
+    }
+  }
+
 
   {
     /* Always use useLayoutEffect for updating anything on navigation */
@@ -17,8 +32,9 @@ const MealDetailScreen = ({ navigation, route }: MealDetailScreenProps) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: item?.name || 'Meal Details',
+      headerRight: () => <Ionicons onPress={handleFavorite} name={isFavorite ? "heart" : "heart-outline"} size={20} color={isFavorite ? "#ff000d" : "#797575"} />
     });
-  }, [navigation, item]);
+  }, [navigation, item, isFavorite]);
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
