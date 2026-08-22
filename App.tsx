@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerToggleButton } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -31,12 +31,14 @@ export interface Meal {
 
 export type RootStackParamList = {
   MealsCategories: undefined;
+  AuthScreen: undefined;
   MealsOverviewScreen: { categoryId: string; categoryName: string };
   MealDetailScreen: { item: Meal };
 };
 
 type RootDrawerParamList = {
   Meals: undefined;
+  Auth: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -72,6 +74,20 @@ function MealsStack() {
   );
 }
 
+const AuthScreen = () => <Text>Auth</Text>
+
+function AuthStack() {
+  return <Stack.Navigator initialRouteName='AuthScreen'>
+    <Stack.Screen 
+      name='AuthScreen' 
+      component={AuthScreen}        
+      options={{
+          title: 'Authentication',
+          headerLeft: () => <DrawerToggleButton />,
+        }}/>
+  </Stack.Navigator>
+}
+
 export default function App() {
   return (
     <View style={styles.container}>
@@ -82,6 +98,11 @@ export default function App() {
             name="Meals"
             component={MealsStack}
             options={{ title: 'Meals', headerShown: false }}
+          />
+          <Drawer.Screen
+            name="Auth"
+            component={AuthStack}
+            options={{ title: 'Login', headerShown: false }}
           />
         </Drawer.Navigator>
       </NavigationContainer>
