@@ -7,7 +7,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import { Ionicons } from '@expo/vector-icons';
-import FavoritesContextProvider from "./store/context/favorites-context"
+import FavoritesContextProvider from './store/context/favorites-context';
 
 export interface Meal {
   id: string;
@@ -47,9 +47,7 @@ const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 function MealsStack() {
   return (
-    <Stack.Navigator
-      initialRouteName="MealsCategories"
-    >
+    <Stack.Navigator initialRouteName="MealsCategories">
       <Stack.Screen
         name="MealsCategories"
         component={CategoriesScreen}
@@ -75,18 +73,21 @@ function MealsStack() {
   );
 }
 
-const AuthScreen = () => <Text>Auth</Text>
+const AuthScreen = () => <Text>Auth</Text>;
 
 function AuthStack() {
-  return <Stack.Navigator initialRouteName='AuthScreen'>
-    <Stack.Screen 
-      name='AuthScreen' 
-      component={AuthScreen}        
-      options={{
+  return (
+    <Stack.Navigator initialRouteName="AuthScreen">
+      <Stack.Screen
+        name="AuthScreen"
+        component={AuthScreen}
+        options={{
           title: 'Authentication',
           headerLeft: () => <DrawerToggleButton />,
-        }}/>
-  </Stack.Navigator>
+        }}
+      />
+    </Stack.Navigator>
+  );
 }
 
 export default function App() {

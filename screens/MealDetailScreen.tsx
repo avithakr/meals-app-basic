@@ -10,7 +10,9 @@ const MealDetailScreen = ({ navigation, route }: MealDetailScreenProps) => {
   const { item } = route.params;
   const { ingredients, steps, imageUrl, name, description, duration, complexity, servings } = item;
 
-  {/* Always use useLayoutEffect for updating anything on navigation */}
+  {
+    /* Always use useLayoutEffect for updating anything on navigation */
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
