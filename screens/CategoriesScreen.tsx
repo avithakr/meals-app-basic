@@ -10,7 +10,7 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProps) => {
   const { categories } = mealsData;
 
   const handleCategoryPress = (categoryId: string, categoryName: string) => {
-    navigation.navigate('MealsOverviewScreen', { categoryId, categoryName });
+    navigation.navigate('MealsListScreen', { categoryId, categoryName });
   };
 
   const renderCategoryTiles = ({ item }: { item: Category }) => {

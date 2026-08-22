@@ -9,9 +9,9 @@ interface MealTileProps {
   onPress: () => void;
 }
 
-type MealsOverviewScreenProps = NativeStackScreenProps<RootStackParamList, 'MealsOverviewScreen'>;
+type MealsListScreenProps = NativeStackScreenProps<RootStackParamList, 'MealsListScreen'>;
 
-const MealsOverviewScreen = ({ navigation, route }: MealsOverviewScreenProps) => {
+const MealsListScreen = ({ navigation, route }: MealsListScreenProps) => {
   const { categoryId } = route.params;
 
   const getMealsByCategoryId = (meals: Meal[], categoryId: string): Meal[] => {
@@ -86,7 +86,7 @@ const MealsOverviewScreen = ({ navigation, route }: MealsOverviewScreenProps) =>
   );
 };
 
-export default MealsOverviewScreen;
+export default MealsListScreen;
 
 const styles = StyleSheet.create({
   container: {

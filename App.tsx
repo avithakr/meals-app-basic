@@ -4,9 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerToggleButton } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CategoriesScreen from './screens/CategoriesScreen';
-import MealsOverviewScreen from './screens/MealsOverviewScreen';
+import MealsListScreen from './screens/MealsListScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
-import { Ionicons } from '@expo/vector-icons';
 import FavoritesContextProvider from './store/context/favorites-context';
 import FavoriteMealScreen from './screens/FavoriteMealScreen';
 
@@ -34,7 +33,7 @@ export interface Meal {
 export type RootStackParamList = {
   MealsCategories: undefined;
   FavoriteMealScreen: undefined;
-  MealsOverviewScreen: { categoryId: string; categoryName: string };
+  MealsListScreen: { categoryId: string; categoryName: string };
   MealDetailScreen: { item: Meal };
 };
 
@@ -60,14 +59,10 @@ function MealsStack() {
       <Stack.Screen
         name="MealDetailScreen"
         component={MealDetailScreen}
-        options={{
-          title: 'Meal Details',
-          headerRight: () => <Ionicons name="heart" size={20} color="#ff0019" />,
-        }}
       />
       <Stack.Screen
-        name="MealsOverviewScreen"
-        component={MealsOverviewScreen}
+        name="MealsListScreen"
+        component={MealsListScreen}
         options={{ title: 'Meal Overview' }}
       />
     </Stack.Navigator>
